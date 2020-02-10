@@ -1,3 +1,1 @@
 This is a ccdc repository to be used by everybody. Gonna mostly have palo alto stuff in it. As far as the first 15, and the rules go, they seemed to work well enough. I dont proclaim to be any good at this, but the services stayed up and we didnt see much if any red team activity. Rules definitely couldve been locked down more, and I blocked IP address from the 10.0.0.0/24 range when I saw malicious activity. Other than that, needed to fix the web browsing rule for splunk...
-
-any questions or comments feel free to message me
