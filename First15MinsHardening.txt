@@ -47,5 +47,6 @@ Check download status after each step and download next version need to go out o
 16.	Remove dns proxy
 17.	Remove mdm
 18.	Set rules
+//if you need to add multiple IP address or applications, etc youll need to make the rule in multiple lines.
 #	Set rulebase security rules <name> from <source zone> source <source address> to <destination zone> destination <destination address> application <application> service application-default action allow
 
