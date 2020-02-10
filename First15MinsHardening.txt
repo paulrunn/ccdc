@@ -1,0 +1,51 @@
+Palo alto checklist
+This was for the 2020 Minnesota state qualifier. Seemed to work well enough. commit after major/important changes.
+# = configure mode
+1.	Change password
+#	Set mgt-config users admin password
+2.	Get rid of additional users
+#	Delete mgt-config users administrator
+3.	Download update to protect against CVE-2019-1580, and others...
+>	Request system software check
+>	Request system software download version 8.1.0
+>	Request content upgrade check
+Check download status after each step and download next version need to go out of configure mode for it, so a little annoying, 8.1.0 finished downloading after step 5 for me, 8.1.13 after step 6
+>	Show jobs id <job id>
+>	Request system software download version 8.1.13
+>	Request content upgrade check
+>	Request content upgrade download latest
+>	Request content upgrade install version latest
+//commits cannot be done until installs are finished, and a version install requires reboot, so you wont be able to commit until after a reboot has taken place
+>	Request system software install version 8.1.13
+> request restart system
+//this will take down your services. It was done for exactly 6 mins during practice, around the same ammount of time for the competition
+4.	Get rid of nat for palo, there was a NAT setup in the nat profiles allowing access to the management interface from a "public" IP
+#	Delete rulebase nat rules PA
+5.	Add new management profile, limit what services you can access on the interface because i cant figure out how to get rid of mgmt profiles on interfaces from cli, so limiting them until i get into the gui
+#	Set network profiles interface-management-profile ping ping yes
+6.	Remove management profile from interfaces
+#	Set network interface ethernet ethernet1/1 layer3 interface-management-profile ping
+#	Set network interface ethernet ethernet1/2 layer3 interface-management-profile ping
+#	Set network interface ethernet ethernet1/3 layer3 interface-management-profile ping
+#	Set network interface ethernet ethernet1/4 layer3 interface-management-profile ping
+7.	Set management service settings, this will limit what services are going on your management interface
+#	Set deviceconfig system service disable-http yes
+#	Set deviceconfig system service disable-telnet yes
+#	Set deviceconfig system service disable-snmp yes
+#	Set deviceconfig system service disable-icmp yes
+#	Set deviceconfig system service disable-ssh yes
+8.	Hopefully you got a gui at this point, if so:
+# commit
+//bunch of junk just reminding myself to get rid of
+9.	Network > zone security profiles
+10.	Refine mgmt config
+11.	Remove application filter
+12.	Remove HIP object/policy
+13.	Delete data pattern > backup
+14.	Delete custom object > vulnerability
+15.	Remove dhcp on all interfaces
+16.	Remove dns proxy
+17.	Remove mdm
+18.	Set rules
+#	Set rulebase security rules <name> from <source zone> source <source address> to <destination zone> destination <destination address> application <application> service application-default action allow
+
